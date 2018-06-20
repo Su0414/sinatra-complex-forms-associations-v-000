@@ -17,6 +17,7 @@ class PetsController < ApplicationController
       @new_owner = Owner.create(params[:owner_name])
       @new_owner.pets << @pet
       @pet.owner_id = @new_owner.id
+      binding.pry
     else
       @pet = Pet.create(name: params[:pet_name], owner_id: params[:owner_id])
     end
