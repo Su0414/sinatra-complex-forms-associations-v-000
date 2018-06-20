@@ -12,7 +12,8 @@ class PetsController < ApplicationController
 
   post '/pets' do
     puts params
-    if params[:owner_id] == nil && !params["owner_name"].empty?
+    binding.pry
+    if params[:owner_id] == nil && params["owner_name"].empty?
       @pet = Pet.create(name: params[:pet_name])
       @new_owner = Owner.create(params[:owner_name])
       @new_owner.pets << @pet
