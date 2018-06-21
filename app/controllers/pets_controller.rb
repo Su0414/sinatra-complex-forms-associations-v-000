@@ -13,16 +13,20 @@ class PetsController < ApplicationController
   post '/pets' do
     puts params
 
-    if params[:pet] == nil && !params["owner_name"].empty?
+    if params[:pet] == nil
       @pet = Pet.create(name: params[:pet_name])
-      @new_owner = Owner.create(name: params[:owner_name])
-      binding.pry
-      @new_owner.pets << @pet
-      @pet.owner_id = @new_owner.id
+      if !params["owner_name"].empty?
+            @new_owner = Owner.create(name: params[:owner_name])
+            binding.pry
+            @new_owner.pets << @pet
+            @pet.owner_id = @new_owner.id
+      end
     else
+        binding.pry
       @pet = Pet.create(name: params[:pet_name], owner_id: params[:pet])
+
     end
-    binding.pry
+
     @pet.save
     redirect to "pets/#{@pet.id}"
   end
