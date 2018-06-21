@@ -14,13 +14,11 @@ class PetsController < ApplicationController
     puts params
 
     if params[:pet] == nil && !params["owner_name"].empty?
-
       @pet = Pet.create(name: params[:pet_name])
       @new_owner = Owner.create(name: params[:owner_name])
       binding.pry
       @new_owner.pets << @pet
       @pet.owner_id = @new_owner.id
-
     else
       @pet = Pet.create(name: params[:pet_name], owner_id: params[:pet])
     end
