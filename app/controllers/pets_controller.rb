@@ -23,7 +23,7 @@ class PetsController < ApplicationController
       end
     else
         binding.pry
-      @pet = Pet.create(name: params[:pet_name], owner_id: params[:pet])
+      @pet = Pet.create(name: params[:pet_name], owner_id: params[:pet][:owner_id])
 
     end
 
